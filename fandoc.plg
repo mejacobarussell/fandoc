@@ -3,7 +3,7 @@
 <!ENTITY name      "fandoc">
 <!ENTITY author    "Jacob Russell">
 <!ENTITY version   "2026.03.19">
-<!ENTITY md5       "PLACEHOLDER">
+<!ENTITY md5       "724f7010675088bd998d26872af00d6d">
 <!ENTITY launch    "Settings/FanDoc">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/mejacobarussell/fandoc/main/fandoc.plg">
 ]>
