@@ -1,0 +1,10 @@
+Menu="Utilities"
+Icon="fan"
+Title="Fan Doctor"
+Author="Jacob Russell"
+Version="1.0.3"
+Type="php"
+---
+<?php
+include "/usr/local/emhttp/plugins/fandoc/fandoc.php";
+?>
