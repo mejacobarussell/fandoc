@@ -8,8 +8,8 @@ mkdir -p /usr/local/emhttp/plugins/fandoc
 mkdir -p /boot/config/plugins/fandoc
 
 # 2. Corsair Commander Pro udev Fix
-echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="1b1c", ATTRS{idProduct}=="0c10", SYMLINK+="corsair-commander"' > /etc/udev/rules.d/99-corsair-commander.rules
-udevadm control --reload-rules && udevadm trigger
+echo 'SUBSYSTEM==&quot;usb&quot;, ATTRS{idVendor}==&quot;1b1c&quot;, ATTRS{idProduct}==&quot;0c10&quot;, SYMLINK+=&quot;corsair-commander&quot;' > /etc/udev/rules.d/99-corsair-commander.rules
+udevadm control --reload-rules &amp;&amp; udevadm trigger
 </INLINE>
 </FILE>
 
