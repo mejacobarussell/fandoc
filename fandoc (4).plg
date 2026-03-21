@@ -1,0 +1,61 @@
+<?xml version='1.0' standalone='yes'?>
+<PLUGIN name="fandoc" author="Jacob Russell" version="2026.03.20" pluginURL="https://raw.githubusercontent.com/mrjacobarussell/fandoc/main/fandoc.plg">
+
+<FILE Run="/bin/bash">
+<INLINE>
+# 1. Setup Directories
+mkdir -p /usr/local/emhttp/plugins/fandoc
+mkdir -p /boot/config/plugins/fandoc
+
+# 2. Corsair Commander Pro udev Fix
+echo 'SUBSYSTEM==&quot;usb&quot;, ATTRS{idVendor}==&quot;1b1c&quot;, ATTRS{idProduct}==&quot;0c10&quot;, SYMLINK+=&quot;corsair-commander&quot;' > /etc/udev/rules.d/99-corsair-commander.rules
+udevadm control --reload-rules &amp;&amp; udevadm trigger
+</INLINE>
+</FILE>
+
+<!-- Install the page descriptor so Unraid discovers it in the menu -->
+<FILE Name="/usr/local/emhttp/plugins/fandoc/fandoc.page">
+<INLINE>
+Menu="Utilities"
+Icon="fan"
+Title="Fan Doctor"
+Author="Jacob Russell"
+Version="1.0.3"
+Type="php"
+---
+&lt;?php
+include "/usr/local/emhttp/plugins/fandoc/fandoc.php";
+?&gt;
+</INLINE>
+</FILE>
+
+<!-- Install PHP files directly from GitHub -->
+<FILE Run="/bin/bash">
+<INLINE>
+BASE="https://raw.githubusercontent.com/mrjacobarussell/fandoc/main"
+DIR="/usr/local/emhttp/plugins/fandoc"
+wget -q -O ${DIR}/fandoc.php ${BASE}/fandoc.php
+wget -q -O ${DIR}/fandoc_save.php ${BASE}/fandoc_save.php
+wget -q -O ${DIR}/fandoc_calibrate.php ${BASE}/fandoc_calibrate.php
+</INLINE>
+</FILE>
+
+<!-- Fix Permissions -->
+<FILE Run="/bin/bash">
+<INLINE>
+chown -R nobody:users /usr/local/emhttp/plugins/fandoc
+chmod -R 755 /usr/local/emhttp/plugins/fandoc
+echo 'FanDoc installed successfully'
+</INLINE>
+</FILE>
+
+<!-- Uninstall -->
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+rm -rf /usr/local/emhttp/plugins/fandoc
+rm -f /etc/udev/rules.d/99-corsair-commander.rules
+echo 'FanDoc removed'
+</INLINE>
+</FILE>
+
+</PLUGIN>
