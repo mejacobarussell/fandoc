@@ -1,0 +1,8 @@
+# Force LF line endings for all files
+* text=auto eol=lf
+
+# Explicitly ensure these files always use LF
+*.php text eol=lf
+*.plg text eol=lf
+*.page text eol=lf
+*.sh text eol=lf
